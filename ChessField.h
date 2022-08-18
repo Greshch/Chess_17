@@ -9,9 +9,10 @@ public:
 	/*-делает шаг фигурой на определенную позицию.
 	  если фигура смогла так перейти - возвращает true иначе не перемещает 
 	  и возвращает false
-	  */
+	*/
 	void ShowBoard(); //- выводит на экран доску с фигурами
-	Color GetColor(int xPos, int yPos) const;
+	Color GetPlayerColor() const;
+	Figure* GetCurFigure() const;
 	~ChessField();
 
 private:
@@ -25,6 +26,6 @@ private:
 	void Init();
 	void UpdateField();
 	void UpdateFigure();
-	Figure* GetCurFigure() const;
+	Color GetColor(int xPos, int yPos) const;
 };
 

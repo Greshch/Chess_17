@@ -91,6 +91,11 @@ void ChessField::ShowBoard()
 	std::cout << "Y\n";
 }
 
+Color ChessField::GetPlayerColor() const
+{
+	return GetCurFigure()->GetColor();
+}
+
 Color ChessField::GetColor(int xPos, int yPos) const
 {
 	for (int i = 0; i < m_size; i++)
@@ -117,8 +122,8 @@ ChessField::~ChessField()
 void ChessField::Init()
 {
 	m_figures = new Figure * [m_size];
-	m_figures[0] = new King(2, 1, Color::ColBlack);
-	m_figures[1] = new Horse(5, 3, Color::ColWhite);
+	m_figures[0] = new Horse(5, 3, Color::ColWhite);
+	m_figures[1] = new King(2, 1, Color::ColBlack);
 }
 
 void ChessField::UpdateFigure()
