@@ -9,6 +9,11 @@ Figure::Figure(int xPos, int yPos) : m_xPos(xPos),
 {
 }
 
+Figure::Figure(int xPos, int yPos, Color color) : Figure(xPos, yPos)
+{
+    m_color = color;
+}
+
 Color Figure::GetColor() const
 {
     return m_color;

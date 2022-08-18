@@ -7,6 +7,7 @@ class Figure
 public:
     Figure();
     Figure(int xPos, int yPos); //-устанавливает фигуру в начальное положение
+    Figure(int xPos, int yPos, Color color);
     Color GetColor() const;  // Black и White
     FigureId GetFigureId() const; /*-у каждой фигуры есть идентификатор, тип не важен, главное 
                             чтобы он был уникальным*/

@@ -15,7 +15,7 @@ public:
 	~ChessField();
 
 private:
-	int m_field[FieldRows][FieldCols] = { 0 };
+	int m_field[FieldRows][FieldCols];
 	int m_size = 2;
 	Figure** m_figures;
 };

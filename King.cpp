@@ -8,7 +8,12 @@ King::King() : Figure()
 
 King::King(int posX, int posY) : Figure(posX, posY)
 {
-    m_figureId = FigureId::FigIdHorse;
+    m_figureId = FigureId::FigIdKing;
+}
+
+King::King(int xPos, int yPos, Color color) : Figure(xPos, yPos, color)
+{
+    m_figureId = FigureId::FigIdKing;
 }
 
 bool King::CanMoveToPosition(int xPos, int yPos)

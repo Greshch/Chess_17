@@ -5,9 +5,27 @@
 
 ChessField::ChessField()
 {
+	// Init
 	m_figures = new Figure*[m_size];
-	m_figures[0] = new King;
-	m_figures[1] = new Horse;
+	m_figures[0] = new King(0, 7, Color::ColBlack);
+	m_figures[1] = new Horse(4, 1, Color::ColWhite);
+	// Init End
+
+	// Update
+	for (int row = 0; row < FieldRows; row++)
+	{
+		for (int col = 0; col < FieldCols; col++)
+		{
+			m_field[row][col] = FigureId::FigIdEmpty;
+		}
+	}
+	for (int i = 0; i < m_size; i++)
+	{
+		int x = m_figures[i]->GetX();
+		int y = m_figures[i]->GetY();
+		m_field[y][x] = m_figures[i]->GetFigureId();
+	}
+	// End Update
 }
 
 void ChessField::ShowBoard()

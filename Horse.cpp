@@ -11,6 +11,11 @@ Horse::Horse(int xPos, int yPos) : Figure(xPos, yPos)
     m_figureId = FigureId::FigIdHorse;
 }
 
+Horse::Horse(int xPos, int yPos, Color color) : Figure(xPos, yPos, color)
+{
+    m_figureId = FigureId::FigIdHorse;
+}
+
 bool Horse::CanMoveToPosition(int xPos, int yPos)
 {
     if (xPos < 0 || xPos >= FieldCols) // check cols

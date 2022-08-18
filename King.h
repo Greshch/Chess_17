@@ -7,6 +7,7 @@ class King :
 public:
     King();
     King(int posX, int posY);
+    King(int xPos, int yPos, Color color);
     bool CanMoveToPosition(int xPos, int yPos);
     ~King();
 };
