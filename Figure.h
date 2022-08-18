@@ -11,6 +11,9 @@ public:
     FigureId GetFigureId() const; /*-у каждой фигуры есть идентификатор, тип не важен, главное 
                             чтобы он был уникальным*/
     void SetCurrentCoordinates(int xPos, int yPos);
+
+    int GetX() const;
+    int GetY() const;
     virtual ~Figure();
 
 protected:

@@ -19,6 +19,22 @@ FigureId Figure::GetFigureId() const
     return m_figureId;
 }
 
+void Figure::SetCurrentCoordinates(int xPos, int yPos)
+{
+    m_xPos = xPos;
+    m_yPos = yPos;
+}
+
+int Figure::GetX() const
+{
+    return m_xPos;
+}
+
+int Figure::GetY() const
+{
+    return m_yPos;
+}
+
 Figure::~Figure()
 {
 }
