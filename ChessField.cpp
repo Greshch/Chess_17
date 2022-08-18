@@ -11,8 +11,17 @@ ChessField::ChessField()
 
 void ChessField::ShowBoard()
 {
+	std::cout << "\n";
+	std::cout << "  ";
+	for (int i = 0; i < FieldCols; i++)
+	{
+		std::cout << "  " << i << "  ";
+	}
+	std::cout << "  -> X";
+	std::cout << "\n  -----------------------------------------\n";
 	for (int i = 0; i < FieldRows; i++)
 	{
+		std::cout << i << " |";
 		for (int j = 0; j < FieldCols; j++)
 		{
 			if (m_field[i][j] == FigureId::FigIdEmpty)
@@ -47,9 +56,10 @@ void ChessField::ShowBoard()
 			}
 			std::cout << "|";
 		}
-		std::cout << "\n----------------------------------------";
+		std::cout << "\n  -----------------------------------------";
 		std::cout << "\n";
 	}
+	std::cout << "Y\n";
 }
 
 Color ChessField::GetColor(int xPos, int yPos) const
@@ -78,8 +88,8 @@ ChessField::~ChessField()
 void ChessField::Init()
 {
 	m_figures = new Figure * [m_size];
-	m_figures[0] = new King(0, 7, Color::ColBlack);
-	m_figures[1] = new Horse(4, 1, Color::ColWhite);
+	m_figures[0] = new King(4, 1, Color::ColBlack);
+	m_figures[1] = new Horse(5, 3, Color::ColWhite);
 }
 
 void ChessField::Update()
