@@ -1,10 +1,5 @@
 #pragma once
 #include "Figure.h"
-#include "Horse.h"
-#include "King.h"
-
-int const FieldRows = 8;
-int const FieldCols = 8;
 
 class ChessField
 {
@@ -16,8 +11,11 @@ public:
 	  и возвращает false
 	  */
 	void ShowBoard(); //- выводит на экран доску с фигурами
+	~ChessField();
 
 private:
 	int m_field[FieldRows][FieldCols] = { 0 };
+	int m_size = 2;
+	Figure** m_figures;
 };
 

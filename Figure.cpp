@@ -18,3 +18,7 @@ FigureId Figure::GetFigureId() const
 {
     return m_figureId;
 }
+
+Figure::~Figure()
+{
+}

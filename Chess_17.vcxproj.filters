@@ -44,5 +44,8 @@
     <ClInclude Include="ChessField.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Types_n_Consts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

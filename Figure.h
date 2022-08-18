@@ -1,14 +1,6 @@
 #pragma once
-enum Color {
-    Black,
-    White
-};
 
-enum FigureId {
-    King = -1,
-    Horse = 1,
-    Empty = 0
-};
+#include "Types_n_Consts.h"
 
 class Figure
 {
@@ -19,11 +11,12 @@ public:
     FigureId GetFigureId() const; /*-у каждой фигуры есть идентификатор, тип не важен, главное 
                             чтобы он был уникальным*/
     void SetCurrentCoordinates(int xPos, int yPos);
+    virtual ~Figure();
 
-private:
+protected:
     int m_xPos = 0;
     int m_yPos = 0;
     Color m_color = Color::Black;
-    FigureId m_figureId = FigureId::King;
+    FigureId m_figureId = FigureId::FigIdKing;
 };
 
