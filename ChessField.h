@@ -11,6 +11,7 @@ public:
 	  и возвращает false
 	  */
 	void ShowBoard(); //- выводит на экран доску с фигурами
+	Color GetColor(int xPos, int yPos) const;
 	~ChessField();
 
 private:

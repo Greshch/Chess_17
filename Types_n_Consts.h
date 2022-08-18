@@ -4,12 +4,15 @@ int const FieldRows = 8;
 int const FieldCols = 8;
 
 enum Color {
-    Black,
-    White
+    ColInvalid = 0,
+    ColBlack,
+    ColWhite
 };
 
 enum FigureId {
-    FigIdKing = -1,
-    FigIdHorse = 1,
-    FigIdEmpty = 0
+    FigInvalid = 0,
+    FigIdEmpty,
+    FigIdKing,
+    FigIdHorse
+    
 };

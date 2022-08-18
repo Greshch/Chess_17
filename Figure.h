@@ -19,7 +19,7 @@ public:
 protected:
     int m_xPos = 0;
     int m_yPos = 0;
-    Color m_color = Color::Black;
+    Color m_color = Color::ColBlack;
     FigureId m_figureId = FigureId::FigIdKing;
 };
 
