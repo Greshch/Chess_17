@@ -30,3 +30,7 @@ bool King::CanMoveToPosition(int xPos, int yPos)
 
     return true;
 }
+
+King::~King()
+{
+}

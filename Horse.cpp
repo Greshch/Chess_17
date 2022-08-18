@@ -40,3 +40,7 @@ bool Horse::CanMoveToPosition(int xPos, int yPos)
 
     return true;
 }
+
+Horse::~Horse()
+{
+}

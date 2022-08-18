@@ -6,5 +6,6 @@ class King :
 {
 public:
     bool CanMoveToPosition(int xPos, int yPos);
+    ~King();
 };
 
