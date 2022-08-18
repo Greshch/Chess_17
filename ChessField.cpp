@@ -6,7 +6,36 @@
 ChessField::ChessField()
 {
 	Init();
-	Update();
+	UpdateField();
+}
+
+bool ChessField::Step(FigureId figureId, int xPos, int yPos)
+{
+	if (m_field[yPos][xPos] != FigureId::FigIdEmpty)
+	{
+		return false;
+	}
+
+	Figure* curFig = GetCurFigure();
+	if (figureId == FigureId::FigIdHorse)
+	{
+		if (((Horse*)curFig)->CanMoveToPosition(xPos, yPos) == false)
+		{
+			return false;
+		}
+	}
+	else if (figureId == FigureId::FigIdKing)
+	{
+		if (((King*)curFig)->CanMoveToPosition(xPos, yPos) == false)
+		{
+			return false;
+		}
+	}
+
+	curFig->SetCurrentCoordinates(xPos, yPos);
+	UpdateField();
+	UpdateFigure();
+	return true;
 }
 
 void ChessField::ShowBoard()
@@ -88,11 +117,22 @@ ChessField::~ChessField()
 void ChessField::Init()
 {
 	m_figures = new Figure * [m_size];
-	m_figures[0] = new King(4, 1, Color::ColBlack);
+	m_figures[0] = new King(2, 1, Color::ColBlack);
 	m_figures[1] = new Horse(5, 3, Color::ColWhite);
 }
 
-void ChessField::Update()
+void ChessField::UpdateFigure()
+{
+	m_curFigureId++;
+	m_curFigureId %= m_size;
+}
+
+Figure* ChessField::GetCurFigure() const
+{
+	return m_figures[m_curFigureId];
+}
+
+void ChessField::UpdateField()
 {
 	for (int row = 0; row < FieldRows; row++)
 	{
