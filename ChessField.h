@@ -18,5 +18,9 @@ private:
 	int m_field[FieldRows][FieldCols];
 	int m_size = 2;
 	Figure** m_figures;
+
+private: 
+	void Init();
+	void Update();
 };
 
