@@ -1,6 +1,16 @@
 #include "King.h"
 #include <cmath>
 
+King::King() : Figure()
+{
+    m_figureId = FigureId::FigIdKing;
+}
+
+King::King(int posX, int posY) : Figure(posX, posY)
+{
+    m_figureId = FigureId::FigIdHorse;
+}
+
 bool King::CanMoveToPosition(int xPos, int yPos)
 {
     if (xPos < 0 || xPos >= FieldCols) // check cols
