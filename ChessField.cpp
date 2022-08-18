@@ -45,7 +45,9 @@ void ChessField::ShowBoard()
 					std::cout << "Kg";
 				}
 			}
+			std::cout << "|";
 		}
+		std::cout << "\n----------------------------------------";
 		std::cout << "\n";
 	}
 }
