@@ -16,7 +16,7 @@ int main()
 		std::cin >> fromX >> fromY;
 		if (field.ReadCurentFigure(fromX, fromY) == false)
 		{
-			std::cerr << "You've just misschosen figure... Let's try it again!!\n";
+			std::cerr << "You've just misschoosen figure... Let's try it again!!\n";
 			continue;
 		}
 
