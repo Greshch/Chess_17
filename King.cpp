@@ -33,6 +33,11 @@ bool King::CanMoveToPosition(int xPos, int yPos)
         return false;
     }
 
+    if (dx == dy && dx == 0)
+    {
+        return false;
+    }
+
     return true;
 }
 

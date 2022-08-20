@@ -12,8 +12,8 @@ int main()
 	for (int i = 0; i < steps;)
 	{
 		field.ShowBoard();
-		ReadStep(X, Y, field.GetPlayerColor());
-		Figure* cur = field.GetCurFigure();
+		//ReadStep(X, Y, );
+		/*Figure* cur = field.GetCurFigure();
 		FigureId curID = cur->GetFigureId();
 		if (!field.Step(curID, X, Y))
 		{
@@ -22,7 +22,7 @@ int main()
 		else
 		{
 			++i;
-		}
+		}*/
 	}
 	field.ShowBoard();
 

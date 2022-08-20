@@ -9,40 +9,6 @@ ChessField::ChessField()
 	UpdateField();
 }
 
-bool ChessField::Step(FigureId figureId, int xPos, int yPos)
-{
-	if (CheckOutOfRange(xPos, yPos) == false)
-	{
-		return false;
-	}
-
-	if (m_field[yPos][xPos] != FigureId::FigIdEmpty)
-	{
-		return false;
-	}
-
-	Figure* curFig = GetCurFigure();
-	if (figureId == FigureId::FigIdHorse)
-	{
-		if (((Horse*)curFig)->CanMoveToPosition(xPos, yPos) == false)
-		{
-			return false;
-		}
-	}
-	else if (figureId == FigureId::FigIdKing)
-	{
-		if (((King*)curFig)->CanMoveToPosition(xPos, yPos) == false)
-		{
-			return false;
-		}
-	}
-
-	curFig->SetCurrentCoordinates(xPos, yPos);
-	UpdateField();
-	UpdateFigure();
-	return true;
-}
-
 bool ChessField::Step(int fromX, int fromY, int toX, int toY)
 {
 	if (CheckOutOfRange(toX, toY) == false)
@@ -54,6 +20,27 @@ bool ChessField::Step(int fromX, int fromY, int toX, int toY)
 	{
 		return false;
 	}
+
+	Figure* curFig = GetFigure(fromX, fromY);
+	int figureId = curFig->GetFigureId();
+	if (figureId == FigureId::FigIdHorse)
+	{
+		if (((Horse*)curFig)->CanMoveToPosition(toX, toY) == false)
+		{
+			return false;
+		}
+	}
+	else if (figureId == FigureId::FigIdKing)
+	{
+		if (((King*)curFig)->CanMoveToPosition(toX, toY) == false)
+		{
+			return false;
+		}
+	}
+
+	curFig->SetCurrentCoordinates(toX, toY);
+	UpdateField();
+	UpdatePlayer();
 	return true;
 }
 
@@ -110,10 +97,11 @@ void ChessField::ShowBoard()
 	std::cout << "Y\n";
 }
 
-Color ChessField::GetPlayerColor() const
+Color ChessField::GetPlayer() const
 {
-	return GetCurFigure()->GetColor();
+	return player;
 }
+
 
 Color ChessField::GetColor(int xPos, int yPos) const
 {
@@ -159,15 +147,17 @@ void ChessField::Init()
 	m_figures[1] = new King(2, 1, Color::ColBlack);
 }
 
-void ChessField::UpdateFigure()
-{
-	m_curFigureId++;
-	m_curFigureId %= m_size;
-}
 
-Figure* ChessField::GetCurFigure() const
+Figure* ChessField::GetFigure(int xPos, int yPos)
 {
-	return m_figures[m_curFigureId];
+	for (int i = 0; i < m_size; i++)
+	{
+		if (m_figures[i]->GetX() == xPos && m_figures[i]->GetY() == yPos)
+		{
+			return m_figures[i];
+		}
+	}
+	return nullptr;
 }
 
 void ChessField::UpdateField()
@@ -185,4 +175,9 @@ void ChessField::UpdateField()
 		int y = m_figures[i]->GetY();
 		m_field[y][x] = m_figures[i]->GetFigureId();
 	}
+}
+
+void ChessField::UpdatePlayer()
+{
+	player = (player == Color::ColBlack) ? Color::ColWhite : Color::ColBlack;
 }
