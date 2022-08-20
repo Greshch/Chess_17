@@ -1,7 +1,7 @@
 #pragma once
 
-int const FieldRows = 8;
-int const FieldCols = 8;
+//int const FieldRows = 8;
+//int const FieldCols = 8;
 
 enum Color {
     ColInvalid = 0,
@@ -14,5 +14,4 @@ enum FigureId {
     FigIdEmpty,
     FigIdKing,
     FigIdHorse
-    
 };

@@ -11,6 +11,11 @@ ChessField::ChessField()
 
 bool ChessField::Step(FigureId figureId, int xPos, int yPos)
 {
+	if (CheckOutOfRange(xPos, yPos) == false)
+	{
+		return false;
+	}
+
 	if (m_field[yPos][xPos] != FigureId::FigIdEmpty)
 	{
 		return false;
@@ -35,6 +40,20 @@ bool ChessField::Step(FigureId figureId, int xPos, int yPos)
 	curFig->SetCurrentCoordinates(xPos, yPos);
 	UpdateField();
 	UpdateFigure();
+	return true;
+}
+
+bool ChessField::Step(int fromX, int fromY, int toX, int toY)
+{
+	if (CheckOutOfRange(toX, toY) == false)
+	{
+		return false;
+	}
+
+	if (m_field[toX][toY] != FigureId::FigIdEmpty)
+	{
+		return false;
+	}
 	return true;
 }
 
@@ -106,6 +125,20 @@ Color ChessField::GetColor(int xPos, int yPos) const
 		}
 	}
 	return Color::ColInvalid;
+}
+
+bool ChessField::CheckOutOfRange(int xPos, int yPos) const
+{
+	if (xPos < 0 || xPos >= FieldCols) // check cols
+	{
+		return false;
+	}
+
+	if (yPos < 0 || yPos >= FieldRows) // check rows
+	{
+		return false;
+	}
+	return true;
 }
 
 ChessField::~ChessField()
