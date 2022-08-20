@@ -9,40 +9,29 @@ ChessField::ChessField()
 	UpdateField();
 }
 
-bool ChessField::Step(int fromX, int fromY, int toX, int toY)
+bool ChessField::Step(int toX, int toY)
 {
-	if (CheckOutOfRange(toX, toY) == false)
+	if (m_fig->GetFigureId() == FigureId::FigIdHorse)
 	{
-		return false;
-	}
-
-	if (m_field[toX][toY] != FigureId::FigIdEmpty)
-	{
-		return false;
-	}
-
-	Figure* curFig = GetFigure(fromX, fromY);
-	int figureId = curFig->GetFigureId();
-	if (figureId == FigureId::FigIdHorse)
-	{
-		if (((Horse*)curFig)->CanMoveToPosition(toX, toY) == false)
+		if (((Horse*)m_fig)->CanMoveToPosition(toX, toY) == false)
 		{
 			return false;
 		}
 	}
-	else if (figureId == FigureId::FigIdKing)
+	else if (m_fig->GetFigureId() == FigureId::FigIdKing)
 	{
-		if (((King*)curFig)->CanMoveToPosition(toX, toY) == false)
+		if (((King*)m_fig)->CanMoveToPosition(toX, toY) == false)
 		{
 			return false;
 		}
 	}
-
-	curFig->SetCurrentCoordinates(toX, toY);
+	m_fig->SetCurrentCoordinates(toX, toY);
 	UpdateField();
 	UpdatePlayer();
+	m_fig = nullptr;
 	return true;
 }
+
 
 void ChessField::ShowBoard()
 {
@@ -99,7 +88,7 @@ void ChessField::ShowBoard()
 
 Color ChessField::GetPlayer() const
 {
-	return player;
+	return m_player;
 }
 
 
@@ -160,6 +149,22 @@ Figure* ChessField::GetFigure(int xPos, int yPos)
 	return nullptr;
 }
 
+bool ChessField::ReadCurentFigure(int xPos, int yPos)
+{
+	Figure* cur = GetFigure(xPos, yPos);
+	if (cur == nullptr) // Check existing figure by coords
+	{
+		return false;
+	}
+	
+	if (cur->GetColor() != m_player) // check color figure
+	{
+		return false;
+	}
+	m_fig = cur; // Cur figures was choosen!
+	return true;
+}
+
 void ChessField::UpdateField()
 {
 	for (int row = 0; row < FieldRows; row++)
@@ -179,5 +184,5 @@ void ChessField::UpdateField()
 
 void ChessField::UpdatePlayer()
 {
-	player = (player == Color::ColBlack) ? Color::ColWhite : Color::ColBlack;
+	m_player = (m_player == Color::ColBlack) ? Color::ColWhite : Color::ColBlack;
 }

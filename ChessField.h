@@ -5,10 +5,11 @@ class ChessField
 {
 public:
 	ChessField(); //-расставляет фигуры в начальные позиции позиции
-	bool Step(int fromX, int fromY, int toX, int toY);
+	bool Step(int toX, int toY);
 	void ShowBoard(); //- выводит на экран доску с фигурами
 	Color GetPlayer() const;
 	Figure* GetFigure(int xPos, int yPos);
+	bool ReadCurentFigure(int xPos, int yPos);
 	~ChessField();
 
 private:
@@ -17,7 +18,8 @@ private:
 	int m_field[FieldRows][FieldCols];
 	int m_size = 2;
 	Figure** m_figures;
-	Color player = Color::ColWhite;
+	Color m_player = Color::ColWhite;
+	Figure* m_fig = nullptr;
 	
 
 private: 
